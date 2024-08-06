@@ -1,10 +1,10 @@
-const hasValuesFromArray = (set, array) => {
-  for (const item of array) {
-    if (!set.has(item)) {
-      return false;
-    }
-  }
-  return true;
-};
+export default function cleanSet(set, startString) {
+  if (!startString || !startString.length || typeof startString !== 'string') return '';
 
-export default hasValuesFromArray;
+  let finalString = '';
+  set.forEach((element) => {
+    if (element && element.startsWith(startString)) finalString += `${element.slice(startString.length)}-`;
+  });
+
+  return finalString.slice(0, finalString.length - 1);
+}
